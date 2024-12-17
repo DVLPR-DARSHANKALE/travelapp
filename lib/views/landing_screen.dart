@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:travel/consts/asseturl.dart';
 import 'package:travel/consts/typography.dart';
+import 'package:travel/main.dart';
 
 class LandingScreen extends StatelessWidget {
   LandingScreen({super.key});
 
   PageController pageController = PageController();
+
   int _currentpage = 0;
-  void _nextpage() {
+  nextPage(context) {
     if (_currentpage < 2) {
-      pageController.animateToPage(_currentpage += 1,
-          duration: Duration(milliseconds: 300), curve: Curves.bounceInOut);
-    }
+      pageController.nextPage(
+          duration: Duration(microseconds: 600), curve: Curves.ease);
+    } else
+      GoRouter.of(context).goNamed(Routes.landing2.name);
   }
 
   @override
@@ -26,6 +30,9 @@ class LandingScreen extends StatelessWidget {
             child: Stack(
               children: [
                 PageView(
+                  onPageChanged: (index) {
+                    _currentpage = index;
+                  },
                   controller: pageController,
                   children: [
                     pagecode(
@@ -65,7 +72,7 @@ class LandingScreen extends StatelessWidget {
                             backgroundColor:
                                 WidgetStatePropertyAll(Colors.white)),
                         onPressed: () {
-                          _nextpage();
+                          nextPage(context);
                         },
                         icon: Icon(
                           Icons.arrow_forward_ios,
@@ -79,7 +86,11 @@ class LandingScreen extends StatelessWidget {
     );
   }
 
-  Container pagecode({img, text, text1}) {
+  Container pagecode({
+    img,
+    text,
+    text1,
+  }) {
     return Container(
       child: Container(
           width: double.infinity,
@@ -94,7 +105,9 @@ class LandingScreen extends StatelessWidget {
                 Align(
                     alignment: Alignment.topRight,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // GoRouter.of(context).goNamed(Routes.landing2.name);
+                      },
                       child: Text(
                         "skip>",
                         style: TextStyle(

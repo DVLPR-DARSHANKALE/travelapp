@@ -12,4 +12,23 @@ class Asseturl {
   static String icflight = "assets/images/flight.svg";
   static String ichotel = "assets/images/hotels.svg";
   static String icpakges = "assets/images/packages.svg";
+  static String icrentalcar = "assets/icons/rentalcar.svg";
+  static String ictrain = "assets/icons/train.svg";
+  static String icdiscount = "assets/icons/discount.svg";
+  static String icthingstodo = "assets/icons/thingstodo.svg";
+  static String icrestaurant = "assets/icons/restaurants.svg";
+  static String icaiplanner = "assets/icons/aiplanner.svg";
+  static String igbali = "assets/images/imgbali.png";
+  static String igparis = "assets/images/imgparis.png";
+  static String igjapan = "assets/images/imgjapan.png";
+  static String igiceland = "assets/images/imgiceland.png";
+  static String igbannar1 = "assets/images/bannarimg1.png";
+  static String igbannar2 = "assets/images/bannarimg2.png";
+  static String igbannar3 = "assets/images/bannarimg3.png";
+  static String igmountbromo = "assets/images/mountBromoimg.png";
+  static String igjapan2 = "assets/images/japanimg.png";
+  static String igbeach = "assets/images/beachimg.png";
+  static String igmountain = "assets/images/mountainsimg.png";
+  static String igmaldivies = "assets/images/maldivesimg.png";
+  static String GIFtravel = "assets/images/travel.gif";
 }

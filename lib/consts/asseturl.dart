@@ -30,5 +30,12 @@ class Asseturl {
   static String igbeach = "assets/images/beachimg.png";
   static String igmountain = "assets/images/mountainsimg.png";
   static String igmaldivies = "assets/images/maldivesimg.png";
+  static String igofferimg = "assets/images/offerimg.png";
+  static String igofferimg1 = "assets/images/offerimg1.png";
+  static String icbag = "assets/icons/bagicon.png";
+  static String icflight1 = "assets/icons/flighticon1.png";
+  static String icexplor = "assets/icons/explore.svg";
+  static String ichome = "assets/icons/home.svg";
+  static String icnewsandblogs = "assets/icons/news.svg";
   static String GIFtravel = "assets/images/travel.gif";
 }

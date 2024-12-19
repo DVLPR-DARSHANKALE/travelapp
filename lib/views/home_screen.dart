@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +6,48 @@ import 'package:flutter_svg/svg.dart';
 import 'package:travel/consts/asseturl.dart';
 import 'package:travel/consts/typography.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+int specialseletindex = 0;
+
+class Useroffer {
+  String? img;
+  String? icon;
+  String? title;
+  String? cardtext;
+  String? text1;
+  String? text2;
+  String? text3;
+
+  Useroffer(
+      {this.img,
+      this.cardtext,
+      this.icon,
+      this.text1,
+      this.text2,
+      this.text3,
+      this.title});
+}
+
+List<Useroffer> Userofferlist = [
+  Useroffer(
+      img: Asseturl.igofferimg,
+      icon: Asseturl.icflight1,
+      cardtext: "Flights",
+      title: "New User Offer",
+      text1:
+          "Sign up & enjoy a discount on\nyour first flight booking with us!",
+      text2: "Use Code:  ACEFIRST",
+      text3: "Valid till: 30th Nov, 2024"),
+  Useroffer(
+      img: Asseturl.igofferimg1,
+      icon: Asseturl.icbag,
+      cardtext: "Holiday",
+      title: "New User Offer",
+      text1:
+          "Sign up & enjoy a discount on\nyour first flight booking with us!",
+      text2: "Use Code:  ACEFIRST",
+      text3: "Valid till: 30th Nov, 2024")
+];
 
 class Category {
   String? icon;
@@ -49,10 +92,29 @@ List<Category> Categorylist4 = [
     icon: Asseturl.igbannar3,
   ),
 ];
+List<Category> Specialofferlist = [
+  Category(
+    title: "Top Offers",
+  ),
+  Category(
+    title: "Flights",
+  ),
+  Category(
+    title: "Hotels",
+  ),
+  Category(
+    title: "Buses",
+  ),
+];
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -601,7 +663,7 @@ class HomeScreen extends StatelessWidget {
                   children: List.generate(
                     Categorylist5.length,
                     (index) => Container(
-                      margin: EdgeInsets.only(left: 23.w),
+                      margin: EdgeInsets.only(right: 23.w),
                       clipBehavior: Clip.antiAlias,
                       height: 300.h,
                       width: 165.w,
@@ -672,7 +734,7 @@ class HomeScreen extends StatelessWidget {
                   children: List.generate(
                     Categorylist6.length,
                     (index) => Container(
-                      margin: EdgeInsets.only(left: 25),
+                      margin: EdgeInsets.only(right: 25),
                       clipBehavior: Clip.antiAlias,
                       height: 300.h,
                       width: 165.w,
@@ -687,12 +749,15 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: Stack(
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(14.r),
-                                color: Colors.black.withOpacity(0.1)),
-                            height: 300.h,
-                            width: 165.w,
+                          Positioned(
+                            top: 255.h,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(0),
+                                  color: Colors.black.withOpacity(0.1)),
+                              height: 45.h,
+                              width: 165.w,
+                            ),
                           ),
                           Positioned(
                             bottom: 6,
@@ -709,6 +774,197 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 25.h,
+              ),
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    Asseturl.icdiscount,
+                    height: 24.h,
+                    width: 24.w,
+                    color: Colors.blue,
+                  ),
+                  SizedBox(
+                    width: 3.w,
+                  ),
+                  Text(
+                    "Special Offer",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: Typo.ManropeBold,
+                        fontSize: 16.sp),
+                  ),
+                  SizedBox(
+                    width: 187.w,
+                  ),
+                  Text(
+                    "See all",
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontFamily: Typo.ManropeRegular,
+                        fontSize: 14.sp),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 25.h,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    Specialofferlist.length,
+                    (index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            specialseletindex = index;
+                          });
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(right: 10.w),
+                          width: 90.w,
+                          height: 35.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: index == specialseletindex
+                                      ? Colors.blue
+                                      : Colors.grey.shade500),
+                              borderRadius: BorderRadius.circular(5.r)),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            Specialofferlist[index].title!,
+                            style: TextStyle(
+                                color: index != specialseletindex
+                                    ? Colors.grey.shade500
+                                    : Colors.blue,
+                                fontSize: 14.sp),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 25.h,
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 300.h,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: List.generate(
+                    2,
+                    (index) {
+                      return Container(
+                        margin: EdgeInsets.only(right: 10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.r),
+                            color: Colors.white),
+                        height: 220.h,
+                        width: 171.w,
+                        child: Stack(
+                          children: [
+                            Image.asset(Userofferlist[index].img!),
+                            Container(
+                              height: 18.h,
+                              width: 63.w,
+                            ),
+                            Positioned(
+                              right: 11.w,
+                              top: 120.h,
+                              child: Container(
+                                height: 22.h,
+                                width: 63.w,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(50.r),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.blue,
+                                      radius: 9.r,
+                                      child: Image.asset(
+                                        Userofferlist[index].icon!,
+                                        height: 13.h,
+                                        width: 13.w,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Text(
+                                      Userofferlist[index].cardtext!,
+                                      style: TextStyle(
+                                          fontSize: 9.sp, color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 10.w,
+                              top: 133.h,
+                              child: Text(
+                                Userofferlist[index].title!,
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Colors.black,
+                                    fontFamily: Typo.ManropeSemibold),
+                              ),
+                            ),
+                            Positioned(
+                              left: 10.w,
+                              top: 165.h,
+                              child: Text(
+                                Userofferlist[index].text1!,
+                                style: TextStyle(
+                                  fontSize: 10.sp,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 10.w,
+                              top: 220.h,
+                              child: DottedBorder(
+                                dashPattern: [6],
+                                borderType: BorderType.RRect,
+                                color: Colors.blue,
+                                radius: Radius.circular(10.r),
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 6.w, top: 4.h),
+                                  width: 135.w,
+                                  height: 32.h,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xffEDF5FA),
+                                  ),
+                                  child: Text(
+                                    Userofferlist[index].text2!,
+                                    style: TextStyle(fontSize: 12.sp),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 15.w,
+                              top: 265.h,
+                              child: Text(Userofferlist[index].text3!),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 50.h,
               ),
             ],
           ),

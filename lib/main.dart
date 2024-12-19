@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:travel/consts/home.dart';
 import 'package:travel/views/home_screen.dart';
 import 'package:travel/views/landing_screen.dart';
 import 'package:travel/views/landing_screen_2.dart';
@@ -47,7 +48,7 @@ class Travel extends StatelessWidget {
     GoRoute(
       path: "/home",
       name: Routes.home.name,
-      builder: (context, state) => HomeScreen(),
+      builder: (context, state) => Home(),
     ),
   ]);
 
